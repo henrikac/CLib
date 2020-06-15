@@ -3,3 +3,6 @@
 
 # C
 *.o
+main.c
+
+main
