@@ -13,5 +13,6 @@ typedef struct node_t
 } node_t;
 
 void node_init(node_t **node, void* data, node_t *next, node_t *prev);
+void node_destroy(node_t *node);
 
 #endif
