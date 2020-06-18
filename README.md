@@ -25,5 +25,8 @@ int main(int argc, char **argv)
 	printf("Top node value: %f\n", *((double*)node->data));
 	printf("Items in stack after pop: %ld\n", stack_size(stack));
 
+	node_destroy(node);
+	stack_destroy(stack);
+
 	return 0;
 }
