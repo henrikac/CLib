@@ -21,6 +21,10 @@
 #define VEC_EMPTY 0
 #define VEC_INIT_CAP 4
 
+/**
+ * Initializes a vector
+ * @param[in,out] vec The vector to initialize
+*/
 void vector_init(vector_t **vec)
 {
 	if (*vec != NULL)
@@ -35,6 +39,42 @@ void vector_init(vector_t **vec)
 	(*vec)->items = Malloc(sizeof(void*) * VEC_INIT_CAP);
 }
 
+/**
+ * Gets the numbers items in a vector
+ * @param[in] vec The vector to get the size of
+ * @return The number of items in a vector if vector is not NULL; otherwise, -1
+*/
+size_t vector_size(vector_t *vec)
+{
+	if (vec == NULL)
+	{
+		fprintf(stderr, "Cannot get size of uninitialized vector\n");
+		return -1;
+	}
+
+	return vec->size;
+}
+
+/**
+ * Gets the capacity of a vector
+ * @param[in] vec The vector to get the capacity of
+ * @return The capacity of a vector if vector is not NULL; otherwise, -1
+*/
+size_t vector_capacity(vector_t *vec)
+{
+	if (vec == NULL)
+	{
+		fprintf(stderr, "Cannot get capacity of uninitialized vector\n");
+		return -1;
+	}
+
+	return vec->capacity;
+}
+
+/**
+ * Destroys a vector and all items in it
+ * @param[in,out] vec The vector to destroy
+*/
 void vector_destroy(vector_t **vec)
 {
 	size_t i;
@@ -50,14 +90,27 @@ void vector_destroy(vector_t **vec)
 
 	if (vec_size == VEC_EMPTY)
 	{
-		Free((*vec)->items);
-		Free(*vec);
+		free((*vec)->items);
+		free(*vec);
+		*vec = NULL;
 		return;
 	}
 
 	for (i = 0; i < vec_size; i++)
-		Free((*vec)->items[i]);
+		free((*vec)->items[i]);
 
-	Free((*vec)->items);
-	Free(*vec);
+	free((*vec)->items);
+	free(*vec);
+	*vec = NULL;
 }
+
+
+
+
+
+
+
+
+
+
+
