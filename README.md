@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	stack_t *stack = NULL;
 	node_t *node = NULL;
 	int d1 = 4;
-	double = 2.6;
+	double d2 = 2.6;
 
 	stack_init(&stack);
 	stack_push(stack, &d1);
@@ -30,3 +30,30 @@ int main(int argc, char **argv)
 
 	return 0;
 }
+
+### Example: Vector
+```
+#include <stdio.h>
+
+#include "vector.h"
+
+int main(int argc, char **argv)
+{
+	vector_t *vec = NULL;
+
+	vector_init(&vec);
+	printf("Vector size: %ld\n", vector_size(vec));
+	printf("Vector capacity: %ld\n", vector_capacity(vec));
+	vector_destroy(&vec);
+
+	if (vec == NULL)
+		printf("Vector is NULL\n");
+
+	/* vec == NULL */
+	vector_destroy(&vec); /* nothing happens */
+
+	printf("Vector size: %ld\n", vector_size(vec)); /* prints -1 */
+
+	return 0;
+}
+```
