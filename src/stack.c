@@ -68,34 +68,34 @@ size_t stack_size(stack_t *stack)
 	return stack->size;
 }
 
-void stack_destroy(stack_t *stack)
+void stack_destroy(stack_t **stack)
 {
 	node_t *top = NULL;
 
-	if (stack == NULL)
+	if (*stack == NULL)
 	{
 		fprintf(stderr, "The stack has already been destroyed\n");
 		return;
 	}
 
-	if (stack->size < 1)
+	if ((*stack)->size < 1)
 	{
-		Free(stack);
+		free(*stack);
+		*stack = NULL;
 		return;
 	}
 
-	top = stack->top;
+	top = (*stack)->top;
 
 	while (top != NULL)
 	{
 		node_t *prev = top->prev;
-
 		node_destroy(top);
-
 		top = prev;
 	}
 
-	Free(stack);
+	free(*stack);
+	*stack = NULL;
 }
 
 

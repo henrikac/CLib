@@ -37,6 +37,6 @@ void stack_init(stack_t **stack);
 void stack_push(stack_t *stack, void *value);
 node_t *stack_pop(stack_t *stack);
 size_t stack_size(stack_t *stack);
-void stack_destroy(stack_t *stack);
+void stack_destroy(stack_t **stack);
 
 #endif
