@@ -24,6 +24,5 @@
 
 void *Malloc(size_t size);
 void *Calloc(size_t nitems, size_t size);
-void Free(void *ptr);
 
 #endif

@@ -54,15 +54,3 @@ void *Calloc(size_t nitems, size_t size)
 
 	return c;
 }
-
-/**
- * Deallocates the memory previously allocated by a call to Malloc or Calloc
- * @param[in] ptr Pointer to the memory block to be deallocated 
-*/
-void Free(void *ptr)
-{
-	if (ptr == NULL) return;
-
-	free(ptr);
-	ptr = NULL;
-}
