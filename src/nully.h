@@ -1,5 +1,5 @@
 /*
- * Vector header file
+ * Nully header file
  * Copyright (C) 2020 Henrik Abel Christensen
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -16,30 +16,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef NULLY_H
+#define NULLY_H
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-#include "nully.h"
-#include "utils.h"
-
-typedef struct vector_t
-{
-	size_t capacity;
-	size_t size;
-	void **items;
-} vector_t;
-
-void vector_init(vector_t **vec);
-void vector_add(vector_t *vec, void *item);
-void *vector_pop(vector_t *vec);
-void vector_reserve(vector_t *vec, size_t capacity);
-void vector_trim(vector_t *vec);
-size_t vector_size(vector_t *vec);
-size_t vector_capacity(vector_t *vec);
-void vector_destroy(vector_t **vec);
+void exit_if_null(void *ptr, const char *err_msg);
+void exit_if_not_null(void *ptr, const char *err_msg);
 
 #endif

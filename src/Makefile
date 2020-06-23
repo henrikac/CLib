@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -ansi -pedantic -Wall -Werror -g
-OBJ = node.o stack.o vector.o utils.o
+OBJ = node.o nully.o stack.o vector.o utils.o
 
 default: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) main.c -o main
@@ -8,10 +8,13 @@ default: $(OBJ)
 node.o: utils.o
 	$(CC) $(CFLAGS) -c node.c -o node.o
 
-stack.o: node.o utils.o
+nully.o:
+	$(CC) $(CFLAGS) -c nully.c -o nully.o
+
+stack.o: node.o nully.o utils.o
 	$(CC) $(CFLAGS) -c stack.c -o stack.o
 
-vector.o: utils.o
+vector.o: nully.o utils.o
 	$(CC) $(CFLAGS) -c vector.c -o vector.o
 
 utils.o:

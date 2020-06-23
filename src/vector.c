@@ -27,11 +27,7 @@
 */
 void vector_init(vector_t **vec)
 {
-	if (*vec != NULL)
-	{
-		fprintf(stderr, "The vector has already been initialized\n");
-		return;
-	}
+	exit_if_not_null(*vec, "The vector has already been initialized");
 
 	*vec = Malloc(sizeof(vector_t));
 	(*vec)->capacity = VEC_INIT_CAP;
@@ -48,11 +44,7 @@ void vector_add(vector_t *vec, void *item)
 {
 	void *new_item = NULL;
 
-	if (vec == NULL)
-	{
-		fprintf(stderr, "Cannot add an item to an uninitialized vector\n");
-		return;
-	}
+	exit_if_null(vec, "Cannot add an item to an uninitialized vector");
 
 	if (vec->size == vec->capacity)
 		vector_reserve(vec, vec->capacity * 2);
@@ -105,15 +97,11 @@ void vector_trim(vector_t *vec)
 /**
  * Gets the numbers items in a vector
  * @param[in] vec The vector to get the size of
- * @return The number of items in a vector if vector is not NULL; otherwise, -1
+ * @return The number of items in a vector
 */
 size_t vector_size(vector_t *vec)
 {
-	if (vec == NULL)
-	{
-		fprintf(stderr, "Cannot get size of uninitialized vector\n");
-		return -1;
-	}
+	exit_if_null(vec, "Cannot get the size of an uninitialized vector");
 
 	return vec->size;
 }
@@ -121,15 +109,11 @@ size_t vector_size(vector_t *vec)
 /**
  * Gets the capacity of a vector
  * @param[in] vec The vector to get the capacity of
- * @return The capacity of a vector if vector is not NULL; otherwise, -1
+ * @return The capacity of a vector
 */
 size_t vector_capacity(vector_t *vec)
 {
-	if (vec == NULL)
-	{
-		fprintf(stderr, "Cannot get capacity of uninitialized vector\n");
-		return -1;
-	}
+	exit_if_null(vec, "Cannot get the capacity of an uninitialzed vector");
 
 	return vec->capacity;
 }
@@ -143,11 +127,7 @@ void vector_destroy(vector_t **vec)
 	size_t i;
 	size_t vec_size;
 
-	if (*vec == NULL)
-	{
-		fprintf(stderr, "The vector has already been destroyed\n");
-		return;
-	}
+	exit_if_null(*vec, "The vector has already been destroyed");
 
 	vec_size = (*vec)->size;
 

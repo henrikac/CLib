@@ -20,11 +20,7 @@
 
 void stack_init(stack_t **stack)
 {
-	if (*stack != NULL)
-	{
-		fprintf(stderr, "The stack has already been initialized\n");
-		return;
-	}
+	exit_if_not_null(*stack, "The stack has already been initialized");
 
 	*stack = Malloc(sizeof(stack_t));
 	(*stack)->top = NULL;
@@ -72,33 +68,20 @@ void stack_destroy(stack_t **stack)
 {
 	node_t *top = NULL;
 
-	if (*stack == NULL)
-	{
-		fprintf(stderr, "The stack has already been destroyed\n");
-		return;
-	}
+	exit_if_null(*stack, "The stack has already been destroyed");
 
-	if ((*stack)->size < 1)
+	if ((*stack)->size > 0)
 	{
-		free(*stack);
-		*stack = NULL;
-		return;
-	}
+		top = (*stack)->top;
 
-	top = (*stack)->top;
-
-	while (top != NULL)
-	{
-		node_t *prev = top->prev;
-		node_destroy(top);
-		top = prev;
+		while (top != NULL)
+		{
+			node_t *prev = top->prev;
+			node_destroy(top);
+			top = prev;
+		}
 	}
 
 	free(*stack);
 	*stack = NULL;
 }
-
-
-
-
-

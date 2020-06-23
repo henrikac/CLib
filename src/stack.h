@@ -22,8 +22,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "utils.h"
 #include "node.h"
+#include "nully.h"
+#include "utils.h"
 
 #define EMPTY_STACK 0
 

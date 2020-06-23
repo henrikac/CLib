@@ -1,5 +1,5 @@
 /*
- * Vector header file
+ * Contains procedures to work with NULL pointers
  * Copyright (C) 2020 Henrik Abel Christensen
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -16,30 +16,32 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef VECTOR_H
-#define VECTOR_H
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "nully.h"
-#include "utils.h"
 
-typedef struct vector_t
+/**
+ * Exits the program if the pointer is NULL
+ * @param[in] ptr The pointer to check if is NULL
+ * @param[in] err_msg Error message to print if ptr is NULL
+*/
+void exit_if_null(void *ptr, const char *err_msg)
 {
-	size_t capacity;
-	size_t size;
-	void **items;
-} vector_t;
+	if (ptr == NULL)
+	{
+		fprintf(stderr, "%s\n", err_msg);
+		exit(EXIT_FAILURE);
+	}
+}
 
-void vector_init(vector_t **vec);
-void vector_add(vector_t *vec, void *item);
-void *vector_pop(vector_t *vec);
-void vector_reserve(vector_t *vec, size_t capacity);
-void vector_trim(vector_t *vec);
-size_t vector_size(vector_t *vec);
-size_t vector_capacity(vector_t *vec);
-void vector_destroy(vector_t **vec);
-
-#endif
+/**
+ * Exits the program is the pointer is not NULL
+ * @param[in] ptr The pointer to check if is not NULL
+ * @param[in] err_msg Error message to print if ptr is not NULL
+*/
+void exit_if_not_null(void *ptr, const char *err_msg)
+{
+	if (ptr != NULL)
+	{
+		fprintf(stderr, "%s\n", err_msg);
+		exit(EXIT_FAILURE);
+	}
+}
