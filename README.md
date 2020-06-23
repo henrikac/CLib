@@ -40,10 +40,23 @@ int main(int argc, char **argv)
 int main(int argc, char **argv)
 {
 	vector_t *vec = NULL;
+	int i;
 
 	vector_init(&vec);
 	printf("Vector size: %ld\n", vector_size(vec));
 	printf("Vector capacity: %ld\n", vector_capacity(vec));
+
+	for (i = 0; i < 10; i++)
+	{
+		vector_add(vec, &i);
+	}
+
+	printf("Vector size: %ld\n", vector_size(vec));
+	printf("Vector capacity: %ld\n", vector_capacity(vec));
+
+	for (i = 0; i < 10; i++)
+		printf("item %d: %d\n", i, *((int*)vec->items[i]));
+
 	vector_destroy(&vec);
 
 	if (vec == NULL)
