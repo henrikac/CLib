@@ -57,15 +57,17 @@ int main(int argc, char **argv)
 	for (i = 0; i < 10; i++)
 		printf("item %d: %d\n", i, *((int*)vec->items[i]));
 
+	vector_trim(vec);
+	printf("Vector size: %ld\n", vector_size(vec));
+	printf("Vector capacity: %ld\n", vector_capacity(vec));
+
 	vector_destroy(&vec);
 
 	if (vec == NULL)
 		printf("Vector is NULL\n");
 
 	/* vec == NULL */
-	vector_destroy(&vec); /* nothing happens */
-
-	printf("Vector size: %ld\n", vector_size(vec)); /* prints -1 */
+	vector_destroy(&vec); /* program exits */
 
 	return 0;
 }
