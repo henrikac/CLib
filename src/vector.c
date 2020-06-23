@@ -72,17 +72,34 @@ void vector_reserve(vector_t *vec, size_t capacity)
 {
 	void **new_mem = NULL;
 
-	if (capacity <= vec->capacity) return;
+	if (capacity < vec->size) return;
 
 	new_mem = realloc(vec->items, capacity * sizeof(void*));
 
 	if (new_mem == NULL)
-		printf("\nCouldn't allocate more memory.");
+		fprintf(stderr, "\nProblem occured reallocating memory\n");
 	else
 	{
 		vec->capacity = capacity;
 		vec->items = new_mem;
 	}
+}
+
+/**
+ * Removes excess memory by reducing the capacity of a vector
+ * @param[in] vec The vector to trim
+*/
+void vector_trim(vector_t *vec)
+{
+	size_t capacity_diff;
+	size_t trim_capacity;
+
+	if (vec->capacity == vec->size || vec->size < 1) return;
+
+	capacity_diff = vec->capacity - vec->size;
+	trim_capacity = vec->capacity - capacity_diff;
+	
+	vector_reserve(vec, trim_capacity);
 }
 
 /**
