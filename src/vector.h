@@ -20,6 +20,8 @@
 #define VECTOR_H
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "utils.h"
 
@@ -32,7 +34,7 @@ typedef struct vector_t
 
 void vector_init(vector_t **vec);
 void vector_add(vector_t *vec, void *item);
-void vector_reserve(vector_t *vec, size_t size);
+void vector_reserve(vector_t *vec, size_t capacity);
 void vector_trim(vector_t *vec);
 size_t vector_size(vector_t *vec);
 size_t vector_capacity(vector_t *vec);

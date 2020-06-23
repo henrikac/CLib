@@ -40,6 +40,52 @@ void vector_init(vector_t **vec)
 }
 
 /**
+ * Adds an item to the vector
+ * @param[in] vec The vector to add an item to
+ * @param[in] item The item to add to the vector
+*/
+void vector_add(vector_t *vec, void *item)
+{
+	void *new_item = NULL;
+
+	if (vec == NULL)
+	{
+		fprintf(stderr, "Cannot add an item to an uninitialized vector\n");
+		return;
+	}
+
+	if (vec->size == vec->capacity)
+		vector_reserve(vec, vec->capacity * 2);
+
+	new_item = Malloc(sizeof(void*));
+	memcpy(new_item, item, sizeof(void*));
+
+	vec->items[vec->size++] = new_item;
+}
+
+/**
+ * Reserves memory for the vector
+ * @param[in] vec The vector to reserve memory for
+ * @param[in] capacity The amount of bytes to reserve for the vector
+*/
+void vector_reserve(vector_t *vec, size_t capacity)
+{
+	void **new_mem = NULL;
+
+	if (capacity <= vec->capacity) return;
+
+	new_mem = realloc(vec->items, capacity * sizeof(void*));
+
+	if (new_mem == NULL)
+		printf("\nCouldn't allocate more memory.");
+	else
+	{
+		vec->capacity = capacity;
+		vec->items = new_mem;
+	}
+}
+
+/**
  * Gets the numbers items in a vector
  * @param[in] vec The vector to get the size of
  * @return The number of items in a vector if vector is not NULL; otherwise, -1
@@ -88,29 +134,17 @@ void vector_destroy(vector_t **vec)
 
 	vec_size = (*vec)->size;
 
-	if (vec_size == VEC_EMPTY)
+	if (vec_size != VEC_EMPTY)
 	{
-		free((*vec)->items);
-		free(*vec);
-		*vec = NULL;
-		return;
+		for (i = 0; i < vec_size; i++)
+		{
+			if ((*vec)->items[i] == NULL) continue;
+			free((*vec)->items[i]);
+			(*vec)->items[i] = NULL;
+		}
 	}
-
-	for (i = 0; i < vec_size; i++)
-		free((*vec)->items[i]);
 
 	free((*vec)->items);
 	free(*vec);
 	*vec = NULL;
 }
-
-
-
-
-
-
-
-
-
-
-
