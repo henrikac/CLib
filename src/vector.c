@@ -56,6 +56,35 @@ void vector_add(vector_t *vec, void *item)
 }
 
 /**
+ * Removes the last item of a vector and returns a pointer to the item
+ * @param[in] vec The vector to pop an item from
+ * @return Pointer to the last item in the vector
+*/
+void *vector_pop(vector_t *vec)
+{
+	void *item = NULL;
+	size_t idx;
+
+	exit_if_null(vec, "Cannot pop items from an uninitialized vector");
+
+	if (vec->size < 1)
+	{
+		fprintf(stderr, "Cannot pop items from an empty vector\n");
+		exit(EXIT_FAILURE);
+	}
+
+	idx = vec->size - 1;
+
+	item = Malloc(sizeof(void*));
+	memcpy(item, vec->items[idx], sizeof(void*));
+	free(vec->items[idx]);
+	vec->items[idx] = NULL;
+	vec->size--;
+
+	return item;
+}
+
+/**
  * Reserves memory for the vector
  * @param[in] vec The vector to reserve memory for
  * @param[in] capacity The amount of bytes to reserve for the vector
