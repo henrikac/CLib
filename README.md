@@ -40,6 +40,7 @@ int main(int argc, char **argv)
 int main(int argc, char **argv)
 {
 	vector_t *vec = NULL;
+	int *vec_item = NULL;
 	int i;
 
 	vector_init(&vec);
@@ -61,13 +62,14 @@ int main(int argc, char **argv)
 	printf("Vector size: %ld\n", vector_size(vec));
 	printf("Vector capacity: %ld\n", vector_capacity(vec));
 
+	vec_item = vector_pop(vec);
+	printf("Popped item: %d\n", *vec_item);
+
+	free(vec_item);
 	vector_destroy(&vec);
 
 	if (vec == NULL)
 		printf("Vector is NULL\n");
-
-	/* vec == NULL */
-	vector_destroy(&vec); /* program exits */
 
 	return 0;
 }
