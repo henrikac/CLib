@@ -22,11 +22,14 @@ int main(int argc, char **argv)
 	printf("Items in stack: %ld\n", stack_size(stack));
 
 	node = stack_pop(stack);
-	printf("Top node value: %f\n", *((double*)node->data));
+	printf("Node value: %f\n", *((double*)node->data));
 	printf("Items in stack after pop: %ld\n", stack_size(stack));
 
 	node_destroy(node);
-	stack_destroy(stack);
+
+	printf("Stack top value: %d\n", *((int*)stack->top->data));
+
+	stack_destroy(&stack);
 
 	return 0;
 }
