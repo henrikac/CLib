@@ -30,12 +30,9 @@ void stack_init(stack_t **stack)
 void stack_push(stack_t *stack, void *value)
 {
 	node_t *node = NULL;
-	node_t *prev = stack->top;
+	node_t *next = stack->top;
 
-	node_init(&node, value, NULL, prev);
-	
-	if (stack->top != NULL)
-		stack->top->next = node;
+	node_init(&node, value, next);
 
 	stack->top = node;
 	stack->size++;
@@ -52,9 +49,9 @@ node_t *stack_pop(stack_t *stack)
 	}
 
 	node = stack->top;
-	stack->top = stack->top->prev;
+	stack->top = stack->top->next;
 	stack->size--;
-	node->prev = NULL;
+	node->next = NULL;
 
 	return node;
 }
@@ -76,9 +73,9 @@ void stack_destroy(stack_t **stack)
 
 		while (top != NULL)
 		{
-			node_t *prev = top->prev;
+			node_t *next = top->next;
 			node_destroy(top);
-			top = prev;
+			top = next;
 		}
 	}
 

@@ -18,7 +18,7 @@
 
 #include "node.h"
 
-void node_init(node_t **node, void *data, node_t *next, node_t *prev)
+void node_init(node_t **node, void *data, node_t *next)
 {
 	if (*node != NULL)
 	{
@@ -29,7 +29,6 @@ void node_init(node_t **node, void *data, node_t *next, node_t *prev)
 	*node = Malloc(sizeof(node_t));
 	(*node)->data = data;
 	(*node)->next = next;
-	(*node)->prev = prev;
 }
 
 void node_destroy(node_t *node)
