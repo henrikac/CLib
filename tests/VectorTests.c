@@ -179,65 +179,17 @@ void TestVectorCapacity2(CuTest *tc)
 	vector_destroy(&vec);
 }
 
-CuSuite *VectorInitGetSuite()
+CuSuite *VectorGetSuite()
 {
 	CuSuite *suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, TestVectorInit);
-	return suite;
-}
-
-CuSuite *VectorAddGetSuite()
-{
-	CuSuite *suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, TestVectorAdd);
-	return suite;
-}
-
-CuSuite *VectorPopGetSuite()
-{
-	CuSuite *suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, TestVectorPop);
-	return suite;
-}
-
-CuSuite *VectorReserveGetSuite()
-{
-	CuSuite *suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, TestVectorReserve);
-	return suite;
-}
-
-CuSuite *VectorTrimGetSuite()
-{
-	CuSuite *suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, TestVectorTrim);
-	return suite;
-}
-
-CuSuite *VectorSizeGetSuite()
-{
-	CuSuite *suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, TestVectorSize);
-	return suite;
-}
-
-CuSuite *VectorCapacityGetSuite()
-{
-	CuSuite *suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, TestVectorCapacity);
-	return suite;
-}
-
-CuSuite *VectorCapacity2GetSuite()
-{
-	CuSuite *suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, TestVectorCapacity2);
-	return suite;
-}
-
-CuSuite *VectorDestroyGetSuite()
-{
-	CuSuite *suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, TestVectorDestroy);
 	return suite;
 }
