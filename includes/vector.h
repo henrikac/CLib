@@ -26,6 +26,9 @@
 #include "nully.h"
 #include "utils.h"
 
+#define VEC_EMPTY 0
+#define VEC_INIT_CAP 4
+
 typedef struct vector_t
 {
 	size_t capacity;

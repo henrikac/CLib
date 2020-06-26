@@ -18,9 +18,6 @@
 
 #include "vector.h"
 
-#define VEC_EMPTY 0
-#define VEC_INIT_CAP 4
-
 /**
  * Initializes a vector
  * @param[in,out] vec The vector to initialize
