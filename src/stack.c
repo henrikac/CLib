@@ -20,7 +20,7 @@
 
 /**
  * Initializes a stack
- * @param[in, out] stack The stack to initialize
+ * @param[in, out] stack Pointer to the stack to initialize
 */
 void stack_init(stack_t **stack)
 {
@@ -33,8 +33,8 @@ void stack_init(stack_t **stack)
 
 /**
  * Adds an item to a stack
- * @param[in] stack The stack to add an item to
- * @param[in] value The item to add to the stack
+ * @param[in] stack Pointer to the stack to add an item to
+ * @param[in] value Pointer to the item to add to the stack
 */
 void stack_push(stack_t *stack, void *value)
 {
@@ -48,9 +48,9 @@ void stack_push(stack_t *stack, void *value)
 }
 
 /**
- * Removes an item from a stack and returns the item
- * @param[in] stack The stack to remove an item from
- * @return The item removed from the stack
+ * Removes an item from a stack and returns a pointer the item
+ * @param[in] stack Pointer to the stack to remove an item from
+ * @return Pointer to the item removed from the stack
 */
 node_t *stack_pop(stack_t *stack)
 {
@@ -72,7 +72,7 @@ node_t *stack_pop(stack_t *stack)
 
 /**
  * Gets the number of items in a stack
- * @param[in] stack The stack to get the size of
+ * @param[in] stack Pointer to the stack to get the size of
  * @return The number of items in a stack
 */
 size_t stack_size(stack_t *stack)
@@ -82,7 +82,7 @@ size_t stack_size(stack_t *stack)
 
 /**
  * Destroys a stack and all items in it
- * @param[in, out] stack The stack to destroy
+ * @param[in, out] stack Pointer to the stack to destroy
 */
 void stack_destroy(stack_t **stack)
 {
