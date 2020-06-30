@@ -18,6 +18,10 @@
 
 #include "stack.h"
 
+/**
+ * Initializes a stack
+ * @param[in, out] stack The stack to initialize
+*/
 void stack_init(stack_t **stack)
 {
 	exit_if_not_null(*stack, "The stack has already been initialized");
@@ -27,6 +31,11 @@ void stack_init(stack_t **stack)
 	(*stack)->size = EMPTY_STACK;
 }
 
+/**
+ * Adds an item to a stack
+ * @param[in] stack The stack to add an item to
+ * @param[in] value The item to add to the stack
+*/
 void stack_push(stack_t *stack, void *value)
 {
 	node_t *node = NULL;
@@ -38,6 +47,11 @@ void stack_push(stack_t *stack, void *value)
 	stack->size++;
 }
 
+/**
+ * Removes an item from a stack and returns the item
+ * @param[in] stack The stack to remove an item from
+ * @return The item removed from the stack
+*/
 node_t *stack_pop(stack_t *stack)
 {
 	node_t *node = NULL;
@@ -56,11 +70,20 @@ node_t *stack_pop(stack_t *stack)
 	return node;
 }
 
+/**
+ * Gets the number of items in a stack
+ * @param[in] stack The stack to get the size of
+ * @return The number of items in a stack
+*/
 size_t stack_size(stack_t *stack)
 {
 	return stack->size;
 }
 
+/**
+ * Destroys a stack and all items in it
+ * @param[in, out] stack The stack to destroy
+*/
 void stack_destroy(stack_t **stack)
 {
 	node_t *top = NULL;
